@@ -33,6 +33,7 @@ function getLectures(text) {
             var room = / ([0-9A-Z\.]*) \(/.exec(line)[1];
             // the event is set with a weekly recursion, until the last date
             // see https://tools.ietf.org/html/rfc5545#section-3.8.5.3 for recurrence rules
+            var endDate = dates[1].toISOString().replace(/\W/g, '');
             lectures.push({
                 'summary': title,
                 'location': room,
@@ -44,10 +45,11 @@ function getLectures(text) {
                     'timeZone': 'Europe/Rome',
                     'dateTime': hours[1].toISOString()
                 },
-                'recurrence': ['RRULE:FREQ=WEEKLY;UNTIL=' + dates[1].toISOString()]  // repeat weekly until last day
+                'recurrence': ['RRULE:FREQ=WEEKLY;UNTIL=' + endDate.slice(0, -4) + 'Z']
             });
         });
     });
+    console.log('oi' + lectures[0].recurrence)
     return lectures;
 }
 
