@@ -18,9 +18,8 @@ var days = {
  */
 function getLectures(text) {
     text = text.replace(/^\s+|\s+$/g, '');  // Removes trailing and leading whitespace
-    var courses = text.split('\n\n\n');
     var lectures = [];
-    courses.forEach(function (course) {
+    text.split('\n\n\n').forEach(function (course) {  // todo try-catch here or change this into classic loop to break if invalid course
         var title = /- (.*) {2}/.exec(course)[1]; // retrieve course title
         var prof = /: (.*) \)/.exec(course)[1]; // match prof name
         var dates = course.match(/\d{2}\/\d{2}\/\d{4}/g).map(function (date) {
@@ -40,8 +39,11 @@ function getLectures(text) {
                 return out;
             });
             var room = / ([0-9A-Z\.]*) \(/.exec(line)[1];
+            /*
+            Removes non-alpha characters to comply with ietf recurrence rules formatting
+             */
             var endDate = dates[1].toISOString().replace(/\W/g, '');
-            dates[1] = dates[1].addDays(1);
+            dates[1] = dates[1].addDays(1);  // End date must be included as well,
             /*
             The event is set with a weekly recursion, until the last date.
             See https://tools.ietf.org/html/rfc5545#section-3.8.5.3 for recurrence rules
