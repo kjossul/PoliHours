@@ -1,0 +1,32 @@
+body {
+    font-family: Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    height: 80px;
+    width: 100%;
+    min-width: 500px;
+    margin-bottom: 25px;
+    background-color: #2980b9;
+    color: #ffffff;
+    font-size: 60px;
+}
+
+.navbar img {
+    height: auto;
+    width: auto;
+    max-height: 80px;
+}
+
+.navbar p {
+    display: inline;
+    position: absolute;
+    margin: 0;
+    top: 9px;
+}
+
+.navbar-right {
+    float: right;
+}

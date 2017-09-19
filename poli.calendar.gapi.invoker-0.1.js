@@ -71,19 +71,6 @@ function handleAuthClick(event) {
 function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
 }
-
-/**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-}
-
 /**
  * Creates a new calendar with the given title. Calls also the {@link getLectures} to retrieve the events from the
  * textarea. If everything went good, calls the {@link addEvents} function.

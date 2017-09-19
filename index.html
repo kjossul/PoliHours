@@ -3,9 +3,20 @@
 <head>
     <title>PoliHours</title>
     <meta charset='utf-8'/>
+    <link href="main.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="poli.calendar.timetables.reader-0.1.js"></script>
 </head>
 <body>
+<div class="navbar" role="navigation">
+    <img src="resources/calendar-icon.png"/>
+    <p>PoliHours</p>
+    <div class="navbar-right">
+        <a href="https://github.com/rigowave/PoliCalendars">
+            <img src="resources/github-white.png"/>
+        </a>
+    </div>
+</div>
+<p>Trying out random stuff</p>
 <!--Add buttons to initiate auth sequence and sign out-->
 <textarea id="submit-area" style="display: none" cols="50" rows="20" title="textarea"></textarea>
 <button id="authorize-button" style="display: none;">Authorize</button>
@@ -13,7 +24,6 @@
 <button id="submit-button" style="display: none" onclick="createCalendar('PoliMi');">
     Export timetables
 </button>
-<pre id="content"></pre>
 <script type="text/javascript" src="poli.calendar.gapi.invoker-0.1.js"></script>
 <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"
