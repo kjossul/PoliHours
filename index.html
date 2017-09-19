@@ -103,23 +103,37 @@
         pre.appendChild(textContent);
     }
 
+    /**
+     * Creates a new calendar with the given title. Calls also the {@link getLectures} to retrieve the events from the
+     * textarea. If everything went good, calls the {@link addEvents} function.
+     * @param title  The title of the calendar to add.
+     */
     function createCalendar(title) {
-        var events = getLectures(document.getElementById('submit-area').value);
+        try {
+            var events = getLectures(document.getElementById('submit-area').value);
+        } catch (e) {
+            console.warn("Incorrect input.");  // todo show warning message
+            console.log(e);
+            return;
+        }
         gapi.client.calendar.calendars.insert({'summary': title, 'timeZone': 'Europe/Rome'})
             .then(function (response) {
                 addEvents(response.result.id, events);
             });
     }
 
+    /**
+     * Adds the events passed as parameter to the calendar with the given id.
+     * @param calendarId  The id of the calendar to insert the events into.
+     * @param events The list of events to be inserted.
+     */
     function addEvents(calendarId, events) {
-        console.log("no jokes " + calendarId);
         events.forEach(function (event) {
-            console.log(event);
             gapi.client.calendar.events.insert({
                 'calendarId': calendarId,
                 'resource': event
             }).then(function (response) {
-                console.log("Successfully added event with id " + response.id);
+                console.info("Successfully added event with id " + response.result.id);
             });
         });
     }
