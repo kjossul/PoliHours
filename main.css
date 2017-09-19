@@ -2,6 +2,7 @@ body {
     font-family: Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #9dc3f0;
 }
 
 .navbar {
@@ -9,15 +10,16 @@ body {
     width: 100%;
     min-width: 500px;
     margin-bottom: 25px;
-    background-color: #2980b9;
-    color: #ffffff;
     font-size: 60px;
+    background-color: #ffffff;
 }
 
 .navbar img {
     height: auto;
     width: auto;
-    max-height: 80px;
+    max-height: 70px;
+    vertical-align: middle;
+    padding: 5px;
 }
 
 .navbar p {
