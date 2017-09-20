@@ -21,10 +21,10 @@
 </div>
 <!--Add buttons to initiate auth sequence and sign out-->
 <div class="body">
-    <div class="row">
+    <div class="row" id="authorize-div">
         <button id="authorize-button"><span>Authorize Google Calendar</span><span class="ico"></span></button>
     </div>
-    <form id="timetable-exporter" style="display: none">
+    <form id="exporter-form" style="display: none">
         <div class="row">
             <label>Textual Timetable</label></div>
         <div class="row">
@@ -34,10 +34,10 @@
                 Export timetables
             </button>
         </div>
+        <div class="row">
+            <button id="signout-button" type="button">Sign Out</button>
+        </div>
     </form>
-    <div class="row">
-        <button id="signout-button" style="display: none;">Sign Out</button>
-    </div>
 </div>
 <script type="text/javascript" src="poli.calendar.gapi.invoker-0.1.js"></script>
 <script async defer src="https://apis.google.com/js/api.js"

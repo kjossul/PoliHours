@@ -9,8 +9,9 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 var authorizeButton = document.getElementById('authorize-button');
+var authorizeDiv = document.getElementById('authorize-div')
 var signoutButton = document.getElementById('signout-button');
-var form = document.getElementById('timetable-exporter');
+var form = document.getElementById('exporter-form');
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -45,12 +46,10 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
-        authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
+        authorizeDiv.style.display = 'none';
         form.style.display = 'block';
     } else {
-        authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
+        authorizeDiv.style.display = 'block';
         form.style.display = 'none';
     }
 }
