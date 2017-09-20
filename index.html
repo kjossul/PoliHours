@@ -8,21 +8,37 @@
 </head>
 <body>
 <div class="navbar" role="navigation">
-    <img src="resources/logo.png"/>
-    <div class="navbar-right">
-        <a href="https://github.com/rigowave/PoliCalendars">
-            <img src="resources/github.png"/>
-        </a>
+    <div class="container">
+        <div class="navbar-left">
+            <img src="resources/logo.png"/>
+        </div>
+        <div class="navbar-right">
+            <a href="https://github.com/rigowave/PoliCalendars">
+                <img src="resources/github.png"/>
+            </a>
+        </div>
     </div>
 </div>
-<p>Trying out random stuff</p>
 <!--Add buttons to initiate auth sequence and sign out-->
-<textarea id="submit-area" style="display: none" cols="50" rows="20" title="textarea"></textarea>
-<button id="authorize-button" style="display: none;">Authorize</button>
-<button id="signout-button" style="display: none;">Sign Out</button>
-<button id="submit-button" style="display: none" onclick="createCalendar('PoliMi');">
-    Export timetables
-</button>
+<div class="body">
+    <div class="row">
+        <button id="authorize-button"><span>Authorize Google Calendar</span><span class="ico"></span></button>
+    </div>
+    <form id="timetable-exporter" style="display: none">
+        <div class="row">
+            <label>Textual Timetable</label></div>
+        <div class="row">
+            <textarea id="submit-area" title="textarea"></textarea></div>
+        <div class="row">
+            <button id="submit-button" onclick="createCalendar('PoliMi');" type="submit">
+                Export timetables
+            </button>
+        </div>
+    </form>
+    <div class="row">
+        <button id="signout-button" style="display: none;">Sign Out</button>
+    </div>
+</div>
 <script type="text/javascript" src="poli.calendar.gapi.invoker-0.1.js"></script>
 <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"

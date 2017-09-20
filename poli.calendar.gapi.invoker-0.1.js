@@ -10,8 +10,7 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
-var submitButton = document.getElementById('submit-button');
-var textArea = document.getElementById('submit-area');
+var form = document.getElementById('timetable-exporter');
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -48,13 +47,11 @@ function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
-        submitButton.style.display = 'block';
-        textArea.style.display = 'block';
+        form.style.display = 'block';
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
-        submitButton.style.display = 'none';
-        textArea.style.display = 'none';
+        form.style.display = 'none';
     }
 }
 
