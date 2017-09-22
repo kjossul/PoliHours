@@ -75,89 +75,129 @@ table {
     font-weight: 500;
 }
 
-.brown {
-    background: #ac725e;
-}
-
-.chestnut-rose {
-    background: #d06b64;
-}
-
-.red {
-    background: #f83a22;
-}
 
 button {
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 20px;
-    font-weight: 600;
-    border: 2px solid transparent;
-    background-color: #247d61;
-    border-radius: 10px;
+padding: 10px 20px;
+margin: 5px;
+font-size: 20px;
+font-weight: 600;
+border: 2px solid transparent;
+background-color: #247d61;
+border-radius: 10px;
 }
 
 button span {
-    padding-right: 10px;
-    display: inline-block;
-    vertical-align: middle;
+padding-right: 10px;
+display: inline-block;
+vertical-align: middle;
 }
 
 #exporter-form {
-    width: 100%;
-    padding: 15px;
-    display: block;
+width: 100%;
+padding: 15px;
+display: block;
 }
 
 #exporter-form textarea {
-    width: 100%;
-    resize: vertical;
+width: 100%;
+resize: vertical;
 }
 
 .ico {
-    background: url("resources/external-link-32.png");
-    background-repeat: no-repeat;
-    width: 32px;
-    height: 32px;
+background: url("resources/external-link-32.png");
+background-repeat: no-repeat;
+width: 32px;
+height: 32px;
 }
 
 .label {
-    text-align: left;
+text-align: left;
 }
 
 .textarea {
-    width: 55%;
+width: 55%;
 }
 
 .footer {
-    border-top: 50px black solid;
-    background-color: white;
-    height: 150px;
-    padding-left: 80px;
-    padding-right: 80px;
-    font-size: 16px;
-    font-weight: 500;
-    min-width: 690px;
+border-top: 50px black solid;
+background-color: white;
+height: 150px;
+padding-left: 80px;
+padding-right: 80px;
+font-size: 16px;
+font-weight: 500;
+min-width: 690px;
 
 }
 
 .useful-links {
-    float: left;
+float: left;
 }
 
 a, a:link, a:visited, a:active {
-    text-decoration: none;
-    color: inherit;
+text-decoration: none;
+color: inherit;
 }
 
 a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
 .about {
-    float: right;
+float: right;
 }
 
 .footer a {
-    display: inline-block;
-    margin-bottom: 10px;
+display: inline-block;
+margin-bottom: 10px;
+}
+
+select {
+width: 40%;
+height: 36px;
+padding: 6px 12px;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+
+.light-blue {
+    background: #a4bdfc;
+}
+
+.acquamarine {
+    background: #7ae7bf;
+}
+
+.pink {
+    background: #dbadff;
+}
+
+.sunset {
+    background: #ff887c;
+}
+.yellow {
+    background: #fbd75b;
+}
+
+.orange {
+    background: #ffb878;
+}
+
+.cyan {
+    background: #46d6db;
+}
+
+.gray {
+    background: #e1e1e1;
+}
+.cobalt {
+    background: #5484ed;
+}
+
+.green {
+    background: #51b749;
+}
+
+.red {
+    background: #dc2127;
 }
