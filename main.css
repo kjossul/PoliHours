@@ -2,14 +2,12 @@ body {
     font-family: "Ubuntu-mono", Helvetica Neue, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #9dc3f0;
 }
 
 .navbar {
     height: 80px;
     width: 100%;
     min-width: 300px;
-    margin-bottom: 100px;
     font-size: 60px;
     background-color: #ffffff;
 }
@@ -41,12 +39,52 @@ body {
 .body {
     width: 100%;
     display: inline-block;
+    background-color: #31b97c;
+    padding-bottom: 80px;
+    padding-top: 40px;
+    min-height: 530px;
+}
+
+tr {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .row {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     text-align: center;
+    min-width: 690px;
+    padding: 20px;
+
+}
+
+td {
+    width: 20%;
+    min-width: 230px;
+}
+
+#authorize-div {
+    padding-top: 200px;
+}
+table {
+    width: 100%;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.brown {
+    background: #ac725e;
+}
+
+.chestnut-rose {
+    background: #d06b64;
+}
+
+.red {
+    background: #f83a22;
 }
 
 button {
@@ -55,7 +93,7 @@ button {
     font-size: 20px;
     font-weight: 600;
     border: 2px solid transparent;
-    background-color: rgb(0, 117, 255);
+    background-color: #247d61;
     border-radius: 10px;
 }
 
@@ -75,9 +113,51 @@ button span {
     width: 100%;
     resize: vertical;
 }
+
 .ico {
     background: url("resources/external-link-32.png");
     background-repeat: no-repeat;
     width: 32px;
     height: 32px;
+}
+
+.label {
+    text-align: left;
+}
+
+.textarea {
+    width: 55%;
+}
+
+.footer {
+    border-top: 50px black solid;
+    background-color: white;
+    height: 150px;
+    padding-left: 80px;
+    padding-right: 80px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 690px;
+
+}
+
+.useful-links {
+    float: left;
+}
+
+a, a:link, a:visited, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.about {
+    float: right;
+}
+
+.footer a {
+    display: inline-block;
+    margin-bottom: 10px;
 }

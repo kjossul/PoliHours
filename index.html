@@ -14,7 +14,7 @@
         </div>
         <div class="navbar-right">
             <a href="https://github.com/rigowave/PoliCalendars">
-                <img src="resources/github.png"/>
+                <img src="resources/help-icon-512.png"/>
             </a>
         </div>
     </div>
@@ -25,19 +25,58 @@
         <button id="authorize-button"><span>Authorize Google Calendar</span><span class="ico"></span></button>
     </div>
     <form id="exporter-form" style="display: none">
-        <div class="row">
-            <label>Textual Timetable</label></div>
-        <div class="row">
-            <textarea id="submit-area" title="textarea"></textarea></div>
-        <div class="row">
-            <button id="submit-button" onclick="createCalendar('PoliMi');" type="submit">
-                Export timetables
-            </button>
-        </div>
-        <div class="row">
+        <div class="row" id="logout-div">
             <button id="signout-button" type="button">Sign Out</button>
         </div>
+        <table>
+            <tr>
+                <td></td>
+                <td class="label"><label>Textual timetable</label></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="instructions">
+                    <img src="resources/right-arrow-128.png" />
+                    <p>Paste your textual timetable here</p>
+                </td>
+                <td class="textarea">
+                    <textarea id="submit-area" title="textarea" rows="20">
+                    </textarea></td>
+                <td class="options">
+                    <p>Calendar color</p>
+                    <select title="color-selector" id="color-selector">
+                        <option class="brown" value="1">Brown</option>
+                        <option class="chestnut-rose" value="2">Chestnut Rose</option>
+                        <option class="red" value="3">Red</option>
+                    </select>
+                    <img src="resources/left-arrow-128.png" style="display: block;padding-left: 100px;padding-top: 20px"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button id="submit-button" onclick="createCalendar('PoliMi');" type="submit">
+                        Export timetables
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+        </table>
     </form>
+</div>
+<div class="footer">
+    <div class="useful-links">
+        <h2>Useful links</h2>
+        <a href="https://www.polimi.it/onlineservices">Servizi online</a><br/>
+        <a href="https://www.google.com/calendar">Google Calendar</a><br/>
+    </div>
+    <div class="about">
+        <h2>About</h2>
+        <a href="https://github.com/rigowave/PoliCalendars">
+            <img src="resources/github.png" style="width: 20px;height: 20px"> Github repo
+        </a><br/>
+        <a href="faq.html">FAQ</a>
+    </div>
 </div>
 <script type="text/javascript" src="poli.calendar.gapi.invoker-0.1.js"></script>
 <script async defer src="https://apis.google.com/js/api.js"

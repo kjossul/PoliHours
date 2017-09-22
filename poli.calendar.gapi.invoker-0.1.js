@@ -10,6 +10,7 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 var authorizeButton = document.getElementById('authorize-button');
 var authorizeDiv = document.getElementById('authorize-div')
+var logoutDiv = document.getElementById('logout-div')
 var signoutButton = document.getElementById('signout-button');
 var form = document.getElementById('exporter-form');
 
@@ -48,9 +49,11 @@ function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
         authorizeDiv.style.display = 'none';
         form.style.display = 'block';
+        logoutDiv.style.display = 'block';
     } else {
         authorizeDiv.style.display = 'block';
         form.style.display = 'none';
+        logoutDiv.style.display = 'none';
     }
 }
 
