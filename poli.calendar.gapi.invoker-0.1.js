@@ -9,8 +9,8 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 var authorizeButton = document.getElementById('authorize-button');
-var authorizeDiv = document.getElementById('authorize-div')
-var logoutDiv = document.getElementById('logout-div')
+var authorizeDiv = document.getElementById('authorize-div');
+var logoutDiv = document.getElementById('logout-div');
 var signoutButton = document.getElementById('signout-button');
 var form = document.getElementById('exporter-form');
 
@@ -77,11 +77,11 @@ function handleSignoutClick(event) {
  * @param title  The title of the calendar to add.
  */
 function createCalendar(title) {
+    clearMessages();
     try {
         var events = getLectures(document.getElementById('submit-area').value);
     } catch (e) {
-        console.warn("Incorrect input.");  // todo actually remove this useless try-catch
-        console.log(e);
+        showError('Could not read timetables. Please check that your input is correct');
         return;
     }
     document.getElementById('submit-button').disabled = true;
@@ -93,6 +93,9 @@ function createCalendar(title) {
         gapi.client.calendar.calendars.insert({'summary': title, 'timeZone': 'Europe/Rome'})
             .then(function (response) {
                 addEvents(response.result.id, events);
+            }, function (error) {
+                showError('Could not create new calendar. Please check if you signed successfully into Google.');
+                console.error(error);
             });
 }
 
@@ -114,6 +117,8 @@ function addEvents(calendarId, events) {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('submit-button').disabled = false;
             }
+        }, function (error) {
+            showError("Failed to create event for lecture " + event.summary);
         });
     });
 }
@@ -129,3 +134,7 @@ function showError(text) {
     document.getElementById('submit-button').disabled = false;
 }
 
+function clearMessages() {
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('error').innerHTML = '';
+}
