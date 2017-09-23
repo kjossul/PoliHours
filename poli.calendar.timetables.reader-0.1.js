@@ -19,6 +19,7 @@ var days = {
 function getLectures(text) {
     text = text.replace(/^\s+|\s+$/g, '');  // Removes trailing and leading whitespace
     var lectures = [];
+    var color = document.getElementById("color-selector").value;
     text.split('\n\n\n').forEach(function (course) {  // todo try-catch here or change this into classic loop to break if invalid course
         var title = /- (.*) {2}/.exec(course)[1]; // retrieve course title
         var prof = /: (.*) \)/.exec(course)[1]; // match prof name
@@ -59,7 +60,8 @@ function getLectures(text) {
                     'timeZone': 'Europe/Rome',
                     'dateTime': hours[1].toISOString()
                 },
-                'recurrence': ['RRULE:FREQ=WEEKLY;UNTIL=' + endDate.slice(0, -4) + 'Z']  // trims milliseconds
+                'recurrence': ['RRULE:FREQ=WEEKLY;UNTIL=' + endDate.slice(0, -4) + 'Z'],  // trims milliseconds
+                'colorId': color
             });
         });
     });

@@ -70,6 +70,7 @@ function handleAuthClick(event) {
 function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
 }
+
 /**
  * Creates a new calendar with the given title. Calls also the {@link getLectures} to retrieve the events from the
  * textarea. If everything went good, calls the {@link addEvents} function.
@@ -83,10 +84,13 @@ function createCalendar(title) {
         console.log(e);
         return;
     }
-    gapi.client.calendar.calendars.insert({'summary': title, 'timeZone': 'Europe/Rome'})
-        .then(function (response) {
-            addEvents(response.result.id, events);
-        });
+    if (!document.getElementById('create-new-calendar').checked) {  // use primary calendar, don't create a new one
+        addEvents('primary', events);
+    } else
+        gapi.client.calendar.calendars.insert({'summary': title, 'timeZone': 'Europe/Rome'})
+            .then(function (response) {
+                addEvents(response.result.id, events);
+            });
 }
 
 /**
