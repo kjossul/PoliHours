@@ -13,8 +13,16 @@
             <a href="index.html"><img src="resources/logo.png"/></a>
         </div>
         <div class="navbar-right">
-            <a href="https://github.com/rigowave/PoliCalendars">
+            <a href="faq.html" class="tooltip">
                 <img src="resources/help-icon-512.png"/>
+                <div class="tooltiptext">
+                    <p><b>HOW TO</b></p>
+                    <p><b>STEP 1</b>: Log in to Google with the <i>Authorize Google Calendar</i> button.</p>
+                    <p><b>STEP 2</b>: Copy-paste the text timetable you find on the online services.</p>
+                    <p><b>STEP 3</b>: Pick your preferences with the tools on the right.</p>
+                    <p><b>STEP 4</b>: Click <i>export timetable</i>, wait and enjoy!</p>
+                    <p>Still need help? Just click here!</p>
+                </div>
             </a>
         </div>
     </div>
@@ -31,7 +39,7 @@
         <table>
             <tr>
                 <td></td>
-                <td class="label"><label>Textual timetable</label></td>
+                <td class="label"><label>Text timetable</label></td>
                 <td></td>
             </tr>
             <tr>
@@ -66,7 +74,7 @@
                 <td></td>
                 <td>
                     <button id="submit-button" onclick="createCalendar('PoliMi');" type="button">
-                        Export timetables
+                        Export timetable
                     </button>
                     <div id="loading" class="output" style="display: none">
                         <img src="resources/loading.gif" id="loading-gif"/>
