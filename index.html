@@ -68,6 +68,11 @@
                     <button id="submit-button" onclick="createCalendar('PoliMi');" type="button">
                         Export timetables
                     </button>
+                    <div id="loading" class="output" style="display: none">
+                        <img src="resources/loading.gif" id="loading-gif"/>
+                    </div>
+                    <div id="result" class="output"></div>
+                    <div id="error"></div>
                 </td>
                 <td></td>
             </tr>
@@ -100,8 +105,7 @@
     Wednesday from 08:15 to 10:15, lesson in lecture theatre B.2.4 (Milano Città Studi - Via Bonardi - Edificio 14 - Piano Primo)\n\
     Thursday from 08:15 to 10:15, lesson in lecture theatre T.0.2 (Milano Città Studi - Via Bonardi - Edificio 13 - Piano Seminterrato)\n"
 
-
-    var textarea = document.getElementById('submit-area').placeholder = example;
+    document.getElementById('submit-area').placeholder = example;
 </script>
 <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"

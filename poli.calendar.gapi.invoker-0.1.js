@@ -84,6 +84,9 @@ function createCalendar(title) {
         console.log(e);
         return;
     }
+    document.getElementById('submit-button').disabled = true;
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('submit-area').value = '';
     if (!document.getElementById('create-new-calendar').checked) {  // use primary calendar, don't create a new one
         addEvents('primary', events);
     } else
@@ -99,12 +102,30 @@ function createCalendar(title) {
  * @param events The list of events to be inserted.
  */
 function addEvents(calendarId, events) {
+    var c = events.length;
     events.forEach(function (event) {
         gapi.client.calendar.events.insert({
             'calendarId': calendarId,
             'resource': event
         }).then(function (response) {
             console.info("Successfully added event with id " + response.result.id);
+            if (--c === 0) {
+                showMessage("Added all " + events.length + " events to the calendar.\n");
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('submit-button').disabled = false;
+            }
         });
     });
 }
+
+
+function showMessage(text) {
+    document.getElementById('result').innerHTML += text;
+}
+
+function showError(text) {
+    document.getElementById('error').innerHTML += text;
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('submit-button').disabled = false;
+}
+

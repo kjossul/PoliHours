@@ -201,3 +201,16 @@ border-radius: 3px;
 .red {
     background: #dc2127;
 }
+
+#loading-gif {
+    height: 50px;
+    width: 50px;
+}
+
+.output {
+    padding-top: 10px;
+}
+
+#error {
+    color: #850000;
+}
