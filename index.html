@@ -1,148 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Google Calendar API Quickstart</title>
+    <title>PoliHours</title>
     <meta charset='utf-8'/>
+    <link href="main.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="poli.calendar.timetables.reader-0.1.js"></script>
 </head>
 <body>
-<p>Google Calendar API Quickstart</p>
-
-<!--Add buttons to initiate auth sequence and sign out-->
-<textarea id="submit-area" style="display: none" cols="50" rows="20" title="textarea"></textarea>
-<button id="authorize-button" style="display: none;">Authorize</button>
-<button id="signout-button" style="display: none;">Sign Out</button>
-<button id="submit-button" style="display: none" onclick="createCalendar('PoliMi');">
-    Export timetables</button>
-<pre id="content"></pre>
-
+<div class="navbar" role="navigation">
+    <div class="container">
+        <div class="navbar-left">
+            <a href="index.html"><img src="resources/logo.png"/></a>
+        </div>
+        <div class="navbar-right">
+            <a href="faq.html" class="tooltip">
+                <img src="resources/help-icon-512.png"/>
+                <div class="tooltiptext">
+                    <p><b>HOW TO</b></p>
+                    <p><b>STEP 1</b>: Log in to Google with the <i>Authorize Google Calendar</i> button.</p>
+                    <p><b>STEP 2</b>: Copy-paste the text timetable you find on the online services.</p>
+                    <p><b>STEP 3</b>: Pick your preferences with the tools on the right.</p>
+                    <p><b>STEP 4</b>: Click <i>export timetable</i>, wait and enjoy!</p>
+                    <p>Still need help? Just click here!</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="body">
+    <div class="row" id="authorize-div">
+        <button id="authorize-button"><span>Authorize Google Calendar</span><span class="ico"></span></button>
+    </div>
+    <form id="exporter-form" style="display: none">
+        <div class="row" id="logout-div">
+            <button id="signout-button" type="button">Sign Out</button>
+        </div>
+        <table>
+            <tr>
+                <td></td>
+                <td class="label"><label>Text timetable</label></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="instructions">
+                    <img src="resources/right-arrow-128.png" />
+                    <p>Copy-paste your schedule here.</p>
+                    <p><a href="https://www.polimi.it/onlineservices" target="_blank">Online Services</a> >
+                    Lecture Timetable > Text timetable</p>
+                </td>
+                <td class="textarea">
+                    <textarea id="submit-area" title="textarea" rows="20"></textarea></td>
+                <td class="options">
+                    <p>Events color</p>
+                    <select title="color-selector" id="color-selector">
+                        <option class="light-blue" value="1">Light Blue</option>
+                        <option class="acquamarine" value="2">Acquamarine</option>
+                        <option class="pink" value="3">Pink</option>
+                        <option class="sunset" value="4">Sunset Orange</option>
+                        <option class="yellow" value="5">Yellow</option>
+                        <option class="orange" value="6">Orange</option>
+                        <option class="cyan" value="7">Cyan</option>
+                        <option class="gray" value="8">Gray</option>
+                        <option class="cobalt" value="9">Cobalt</option>
+                        <option class="green" value="10">Green</option>
+                        <option class="red" value="11">Red</option>
+                    </select>
+                    <p><label>
+                        Create new calendar <input type="checkbox" checked id="create-new-calendar"/>
+                    </label></p>
+                    <img src="resources/left-arrow-128.png" style="display: block;padding-left: 100px;padding-top: 20px"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button id="submit-button" onclick="createCalendar('PoliMi');" type="button">
+                        Export timetable
+                    </button>
+                    <div id="loading" class="output" style="display: none">
+                        <img src="resources/loading.gif" id="loading-gif"/>
+                    </div>
+                    <div id="result" class="output"></div>
+                    <div id="error"></div>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class="footer">
+    <div class="useful-links">
+        <h2>Useful links</h2>
+        <a href="https://www.polimi.it/onlineservices">Polimi Online Services</a><br/>
+        <a href="https://www.google.com/calendar">Google Calendar</a><br/>
+    </div>
+    <div class="about">
+        <h2>About</h2>
+        <a href="https://github.com/rigowave/PoliCalendars">
+            <img src="resources/github.png" style="width: 20px;height: 20px"> Github repo
+        </a><br/>
+        <a href="faq.html">FAQ</a>
+    </div>
+</div>
+<script type="text/javascript" src="poli.calendar.gapi.invoker-0.1.js"></script>
 <script type="text/javascript">
-    // Client ID and API key from the Developer Console
-    var CLIENT_ID = '147113309946-6gvpadgqvidiiiuebsmut8p414r637io.apps.googleusercontent.com';
+    var example = "Paste ONLY the lectures info, like this:\n\n\n089183 - DATA BASES 2  (Professor: Braga Daniele Maria )\n\
+    Semester: 1 Lectures start: 18/09/2017 Lectures end: 19/12/2017\n\
+    Monday from 08:15 to 10:15, lesson in lecture theatre L.26.13 (Milano Città Studi - Via Golgi 20 - Edificio 26 - Piano Primo)\n\
+    Tuesday from 08:15 to 10:15, lesson in lecture theatre D.0.3 (Milano Città Studi - Via Golgi 40 - Edificio 25 - Piano Seminterrato)\n\
+    \n\n089184 - SOFTWARE ENGINEERING 2  (Professor: Rossi Matteo Giovanni )\n\
+    Semester: 1 Lectures start: 20/09/2017 Lectures end: 21/12/2017\n\
+    Wednesday from 13:15 to 15:15, training in lecture theatre T.2.1 (Milano Città Studi - Via Bonardi - Edificio 13 - Piano Primo)\n\
+    Wednesday from 08:15 to 10:15, lesson in lecture theatre B.2.4 (Milano Città Studi - Via Bonardi - Edificio 14 - Piano Primo)\n\
+    Thursday from 08:15 to 10:15, lesson in lecture theatre T.0.2 (Milano Città Studi - Via Bonardi - Edificio 13 - Piano Seminterrato)\n"
 
-    // Array of API discovery doc URLs for APIs used by the quickstart
-    var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-
-    // Authorization scopes required by the API; multiple scopes can be
-    // included, separated by spaces.
-    var SCOPES = "https://www.googleapis.com/auth/calendar";
-
-    var authorizeButton = document.getElementById('authorize-button');
-    var signoutButton = document.getElementById('signout-button');
-    var submitButton = document.getElementById('submit-button');
-    var textArea = document.getElementById('submit-area');
-
-    /**
-     *  On load, called to load the auth2 library and API client library.
-     */
-    function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-    }
-
-    /**
-     *  Initializes the API client library and sets up sign-in state
-     *  listeners.
-     */
-    function initClient() {
-        gapi.client.init({
-            discoveryDocs: DISCOVERY_DOCS,
-            clientId: CLIENT_ID,
-            scope: SCOPES
-        }).then(function () {
-            // Listen for sign-in state changes.
-            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-            // Handle the initial sign-in state.
-            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            authorizeButton.onclick = handleAuthClick;
-            signoutButton.onclick = handleSignoutClick;
-        });
-    }
-
-    /**
-     *  Called when the signed in status changes, to update the UI
-     *  appropriately. After a sign-in, the API is called.
-     */
-    function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-            authorizeButton.style.display = 'none';
-            signoutButton.style.display = 'block';
-            submitButton.style.display = 'block';
-            textArea.style.display = 'block';
-        } else {
-            authorizeButton.style.display = 'block';
-            signoutButton.style.display = 'none';
-            submitButton.style.display = 'none';
-            textArea.style.display = 'none';
-        }
-    }
-
-    /**
-     *  Sign in the user upon button click.
-     */
-    function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-    }
-
-    /**
-     *  Sign out the user upon button click.
-     */
-    function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-    }
-
-    /**
-     * Append a pre element to the body containing the given message
-     * as its text node. Used to display the results of the API call.
-     *
-     * @param {string} message Text to be placed in pre element.
-     */
-    function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-    }
-
-    /**
-     * Creates a new calendar with the given title. Calls also the {@link getLectures} to retrieve the events from the
-     * textarea. If everything went good, calls the {@link addEvents} function.
-     * @param title  The title of the calendar to add.
-     */
-    function createCalendar(title) {
-        try {
-            var events = getLectures(document.getElementById('submit-area').value);
-        } catch (e) {
-            console.warn("Incorrect input.");  // todo show warning message
-            console.log(e);
-            return;
-        }
-        gapi.client.calendar.calendars.insert({'summary': title, 'timeZone': 'Europe/Rome'})
-            .then(function (response) {
-                addEvents(response.result.id, events);
-            });
-    }
-
-    /**
-     * Adds the events passed as parameter to the calendar with the given id.
-     * @param calendarId  The id of the calendar to insert the events into.
-     * @param events The list of events to be inserted.
-     */
-    function addEvents(calendarId, events) {
-        events.forEach(function (event) {
-            gapi.client.calendar.events.insert({
-                'calendarId': calendarId,
-                'resource': event
-            }).then(function (response) {
-                console.info("Successfully added event with id " + response.result.id);
-            });
-        });
-    }
+    document.getElementById('submit-area').placeholder = example;
 </script>
-
 <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
-<
-/body>
-< /html>

@@ -1,0 +1,250 @@
+body {
+    font-family: "Ubuntu-mono", Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    height: 80px;
+    width: 100%;
+    min-width: 300px;
+    font-size: 60px;
+    background-color: #ffffff;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 80%;
+    min-width: 600px;
+}
+
+.navbar img {
+    height: auto;
+    width: auto;
+    max-height: 45px;
+    vertical-align: middle;
+}
+
+.navbar-left {
+    float: left;
+}
+
+.navbar-right {
+    float: right;
+}
+
+.body {
+    width: 100%;
+    display: inline-block;
+    background-color: #31b97c;
+    padding-bottom: 80px;
+    padding-top: 40px;
+    min-height: 530px;
+}
+
+tr {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.row {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    min-width: 690px;
+    padding: 20px;
+
+}
+
+td {
+    width: 20%;
+    min-width: 230px;
+}
+
+#authorize-div {
+    padding-top: 200px;
+}
+table {
+    width: 100%;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+button {
+padding: 10px 20px;
+margin: 5px;
+font-size: 20px;
+font-weight: 600;
+border: 2px solid transparent;
+background-color: #247d61;
+border-radius: 10px;
+}
+
+button span {
+padding-right: 10px;
+display: inline-block;
+vertical-align: middle;
+}
+
+#exporter-form {
+width: 100%;
+padding: 15px;
+display: block;
+}
+
+#exporter-form textarea {
+width: 100%;
+resize: vertical;
+}
+
+.ico {
+background: url("resources/external-link-32.png");
+background-repeat: no-repeat;
+width: 32px;
+height: 32px;
+}
+
+.label {
+text-align: left;
+}
+
+.textarea {
+width: 55%;
+}
+
+.footer {
+border-top: 50px black solid;
+background-color: white;
+height: 150px;
+padding-left: 80px;
+padding-right: 80px;
+font-size: 16px;
+font-weight: 500;
+min-width: 690px;
+
+}
+
+.useful-links {
+float: left;
+}
+
+a, a:link, a:visited, a:active {
+text-decoration: none;
+color: inherit;
+}
+
+a:hover {
+text-decoration: underline;
+}
+.about {
+float: right;
+}
+
+.footer a {
+display: inline-block;
+margin-bottom: 10px;
+}
+
+select {
+width: 40%;
+height: 36px;
+padding: 6px 12px;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    padding: 10px;
+    margin-left: -400px; /* Use half of the width */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    font-size: 13px;
+}
+
+.tooltiptext p {
+    margin: 0;
+    height: 50px;
+}
+
+.light-blue {
+    background: #a4bdfc;
+}
+
+.acquamarine {
+    background: #7ae7bf;
+}
+
+.pink {
+    background: #dbadff;
+}
+
+.sunset {
+    background: #ff887c;
+}
+.yellow {
+    background: #fbd75b;
+}
+
+.orange {
+    background: #ffb878;
+}
+
+.cyan {
+    background: #46d6db;
+}
+
+.gray {
+    background: #e1e1e1;
+}
+.cobalt {
+    background: #5484ed;
+}
+
+.green {
+    background: #51b749;
+}
+
+.red {
+    background: #dc2127;
+}
+
+#loading-gif {
+    height: 50px;
+    width: 50px;
+}
+
+.output {
+    padding-top: 10px;
+}
+
+#error {
+    color: #850000;
+}
