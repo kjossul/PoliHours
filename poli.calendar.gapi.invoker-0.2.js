@@ -93,7 +93,7 @@ function createCalendar(title) {
     } else
         gapi.client.calendar.calendars.insert({'summary': title, 'timeZone': 'Europe/Rome'})
             .then(function (response) {
-                addEvents(response.result.id, events);
+                addEvents(response.result.id, events, 0);
             }, function (error) {
                 showError('Could not create new calendar. Please check your internet connection, or if you signed successfully into Google.');
                 console.error(error);
@@ -104,9 +104,11 @@ function createCalendar(title) {
  * Adds the events passed as parameter to the calendar with the given id.
  * @param calendarId  The id of the calendar to insert the events into.
  * @param events The list of events to be inserted.
+ * @param backoffStage Exponent for the backoff wait time (0, 1, 2, ...)
  */
-function addEvents(calendarId, events) {
+function addEvents(calendarId, events, backoffStage) {
     var c = events.length;
+    sleep(100);
     events.forEach(function (event) {
         gapi.client.calendar.events.insert({
             'calendarId': calendarId,
@@ -114,13 +116,25 @@ function addEvents(calendarId, events) {
         }).then(function (response) {
             console.info("Successfully added event with id " + response.result.id);
             if (--c === 0) {
-                showMessage("Added all " + events.length + " events to the calendar.\n");
+                showMessage("Added all lectures to the calendar.\n");
                 showMessage("<b><a href='https://www.google.com/calendar' target='_blank'>Go to your calendar now</a>.</b>");
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('submit-button').disabled = false;
             }
-        }, function (error) {
-            showError("Failed to create event for lecture " + event.summary + ".");
+        }, function (response) {
+            if (500 <= response.result.error.code <= 503 && backoffStage < 4) {
+                /*
+                When receiving a 500 or 503 error, the request can be retried after a small amount of time. The suggested
+                way to handle such errors is with the exponential backoff method: wait for 0, 1, 2, 4, 8, ... seconds
+                (plus a small random amount of milliseconds) before retrying the request. The upper limit that I chose is
+                8 seconds, after that it simply stops trying and logs the error.
+                 */
+                sleep(Math.pow(2, backoffStage) * 1000 + Math.floor(Math.random() * 100));  // waits to avoid API overflowing
+                addEvents(calendarId, [event], backoffStage++);  // Tries to add the event one more time
+            } else {
+                showError("Failed to create event for lecture " + event.summary + ". Please try again.");
+                console.error(response);
+            }
         });
     });
 }
@@ -138,4 +152,9 @@ function showError(text) {
 function clearMessages() {
     document.getElementById('result').innerHTML = '';
     document.getElementById('error').innerHTML = '';
+}
+
+// sleep time expects milliseconds
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
 }
