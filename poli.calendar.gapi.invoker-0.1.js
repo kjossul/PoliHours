@@ -81,7 +81,7 @@ function createCalendar(title) {
     try {
         var events = getLectures(document.getElementById('submit-area').value);
     } catch (e) {
-        showError('Could not read timetables. Please check that your input is correct');
+        showError('Could not read timetables. Please check that your input is correct.');
         return;
     }
     document.getElementById('submit-button').disabled = true;
@@ -94,7 +94,7 @@ function createCalendar(title) {
             .then(function (response) {
                 addEvents(response.result.id, events);
             }, function (error) {
-                showError('Could not create new calendar. Please check if you signed successfully into Google.');
+                showError('Could not create new calendar. Please check your internet connection, or if you signed successfully into Google.');
                 console.error(error);
             });
 }
@@ -114,15 +114,15 @@ function addEvents(calendarId, events) {
             console.info("Successfully added event with id " + response.result.id);
             if (--c === 0) {
                 showMessage("Added all " + events.length + " events to the calendar.\n");
+                showMessage("<b><a href='https://www.google.com/calendar' target='_blank'>Go to your calendar now</a>.</b>");
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('submit-button').disabled = false;
             }
         }, function (error) {
-            showError("Failed to create event for lecture " + event.summary);
+            showError("Failed to create event for lecture " + event.summary + ".");
         });
     });
 }
-
 
 function showMessage(text) {
     document.getElementById('result').innerHTML += text;

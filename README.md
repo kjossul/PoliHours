@@ -1,2 +1,2 @@
-# PoliCalendars
-Import your PoliMi Calendar into the Google app.
+# Polihours
+Import your PoliMi Lecture Timetable into the Google app.
