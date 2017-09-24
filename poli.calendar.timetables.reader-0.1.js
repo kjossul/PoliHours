@@ -22,7 +22,7 @@ function getLectures(text) {
     var color = document.getElementById("color-selector").value;
     text.split('\n\n\n').forEach(function (course) {
         var title = /- (.*) {2}/.exec(course)[1]; // retrieve course title
-        var prof = /: (.*) \)/.exec(course)[1]; // match prof name
+        var prof = /: (.*)\)/.exec(course)[1]; // match prof name
         var dates = course.match(/\d{2}\/\d{2}\/\d{4}/g).map(function (date) {
             var parts = date.split('/');
             return new Date(parts[2], parts[1] - 1, parts[0]);

@@ -82,6 +82,7 @@ function createCalendar(title) {
         var events = getLectures(document.getElementById('submit-area').value);
     } catch (e) {
         showError('Could not read timetables. Please check that your input is correct.');
+        console.error(e);
         return;
     }
     document.getElementById('submit-button').disabled = true;
