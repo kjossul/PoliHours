@@ -20,7 +20,8 @@ function getLectures(text) {
     text = text.replace(/^\s+|\s+$/g, '');  // Removes trailing and leading whitespace
     var lectures = [];
     var color = document.getElementById("color-selector").value;
-    text.split('\n\n\n').forEach(function (course) {
+    text.split('\n\n\n\n').forEach(function (course) {
+        course = course.replace('\n\n', '\n');
         var title = /- (.*) {2}/.exec(course)[1]; // retrieve course title
         var prof = /: (.*)\)/.exec(course)[1]; // match prof name
         var dates = course.match(/\d{2}\/\d{2}\/\d{4}/g).map(function (date) {
@@ -28,11 +29,14 @@ function getLectures(text) {
             return new Date(parts[2], parts[1] - 1, parts[0]);
         });
         var lecturesDescriptions = course.split('\n').slice(2);
+        console.log(lecturesDescriptions);
         lecturesDescriptions.forEach(function (line) {
             /*
             Day of lectures is shown only in textual format (mon, tue, ..), so to get a Date object we add to the
             first day of lectures the difference in days using the getDay() method.
             */
+            line = line.trim();
+            console.log(line);
             var day = dates[0].addDays(days[line.slice(0, 3)] - dates[0].getDay());
             var hours = line.match(/(\d{2}:\d{2})/g).map(function (hour) {
                 var out = new Date(day.getTime());
