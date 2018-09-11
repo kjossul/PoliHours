@@ -1,4 +1,4 @@
-var days = {
+﻿var days = {
     'Lun': 1, 'Mon': 1, 'Mar': 2, 'Tue': 2, 'Mer': 3, 'Wed': 3, 'Gio': 4, 'Thu': 4, 'Ven': 5, 'Fri': 5, 'Sab': 6,
     'Sat': 6, 'Dom': 0, 'Sun': 0
 };
@@ -20,7 +20,8 @@ function getLectures(text) {
     text = text.replace(/^\s+|\s+$/g, '');  // Removes trailing and leading whitespace
     var lectures = [];
     var color = document.getElementById("color-selector").value;
-    text.split('\n\n\n\n').forEach(function (course) {
+    var separator = text.includes('\n\n\n\n') ? '\n\n\n\n' : '\n\n\n';  // finds separator between lectures
+    text.split(separator).forEach(function (course) {
         course = course.replace('\n\n', '\n');
         var title = /- (.*) {2}/.exec(course)[1]; // retrieve course title
         var prof = /: (.*)\)/.exec(course)[1]; // match prof name
